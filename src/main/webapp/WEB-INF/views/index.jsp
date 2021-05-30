@@ -9,10 +9,10 @@
     <meta name="description" content="">
     <meta name="page_type" content="np-template-header-footer-from-plugin">
     <title>House Repair Services 1</title>
-    <link rel="stylesheet" type="text/css" href="<c:url value='WEB-INF/style/nicepage.css'/>" >
-    <link rel="stylesheet" href="<c:url value='WEB-INF/style/House-Repair-Services-1.css'/>">
-    <script class="u-script" type="text/javascript" src="<c:url value='../../webapp/jquery-1.9.1.min.js'/>" defer=""></script>
-    <script class="u-script" type="text/javascript" src="<c:url value='../../webapp/nicepage.js'/>" defer=""></script>
+    <link rel="stylesheet" type="text/css" href="<c:url value='/WEB-INF/style/nicepage.css'/>" >
+    <link rel="stylesheet" href="<c:url value='/WEB-INF/style/House-Repair-Services-1.css'/>">
+    <script class="u-script" type="text/javascript" src="<c:url value='jquery-1.9.1.min.js'/>" defer=""></script>
+    <script class="u-script" type="text/javascript" src="<c:url value='nicepage.js'/>" defer=""></script>
     <meta name="generator" content="Nicepage 3.15.4, nicepage.com">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Archivo+Black:400">
@@ -42,7 +42,7 @@
 </head>
 <body data-home-page="https://website407512.nicepage.io/House-Repair-Services-1.html?version=d705a0f6-1243-4368-9e88-6ff10843b6a6" data-home-page-title="House Repair Services 1" class="u-body"><header class="u-clearfix u-header u-header" id="sec-e2e7"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
     <a href="#" class="u-image u-logo u-image-1">
-        <img src="../../webapp/images/default-logo.png" class="u-logo-image u-logo-image-1">
+        <img src="images/default-logo.png" class="u-logo-image u-logo-image-1">
     </a>
     <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1" data-responsive-from="XL">
         <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px; font-weight: 700; text-transform: uppercase;" wfd-invisible="true">
@@ -57,7 +57,7 @@
             <ul class="u-nav u-spacing-30 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-border-2 u-border-active-palette-1-base u-border-hover-palette-1-base u-border-no-left u-border-no-right u-border-no-top u-button-style u-nav-link u-text-active-palette-1-base u-text-grey-90 u-text-hover-grey-90" href="Page-1.html" style="padding: 10px 0px;">House Repair Services</a>
             </li></ul>
         </div>
-        <div class="u-custom-menu u-nav-container-collapse" >
+        <div class="u-custom-menu u-nav-container-collapse" wfd-invisible="true">
             <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
                 <div class="u-sidenav-overflow">
                     <div class="u-menu-close"></div>

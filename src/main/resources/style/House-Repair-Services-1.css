@@ -1,5 +1,5 @@
 .u-section-1 {
-  background-image: url("../images/dmin.jpg");
+  background-image: url("../../images/dmin.jpg");
   background-position: 50% 0%;
 }
 
@@ -374,7 +374,7 @@ div.form>:hover{
 
 .u-section-3 .u-image-1 {
   min-height: 388px;
-  background-image: url("../images/billionphotos1882993.jpg");
+  background-image: url("../../images/billionphotos1882993.jpg");
 }
 
 .u-section-3 .u-layout-cell-2 {
@@ -412,7 +412,7 @@ div.form>:hover{
 .u-section-3 .u-image-2 {
   min-height: 388px;
   order: 0;
-  background-image: url("../images/billionphotos1883011.jpg");
+  background-image: url("../../images/billionphotos1883011.jpg");
 }
 
 @media (max-width: 1199px) {
@@ -525,7 +525,7 @@ div.form>:hover{
     font-size: 1.5rem;
   }
 }.u-section-4 {
-  background-image: url("../images/g.jpg");
+  background-image: url("../../images/g.jpg");
   background-position: 50% 50%;
 }
 
@@ -541,7 +541,7 @@ div.form>:hover{
 .u-section-4 .u-image-1 {
   min-height: 658px;
   pointer-events: auto;
-  background-image: url("../images/billionphotos1079319min.png");
+  background-image: url("../../images/billionphotos1079319min.png");
   background-position: 50% 0%;
 }
 
@@ -892,7 +892,7 @@ div.form>:hover{
 
 .u-section-6 .u-image-1 {
   min-height: 222px;
-  background-image: url("../images/frg.jpg");
+  background-image: url("../../images/frg.jpg");
   background-position: 50% 50%;
 }
 
@@ -902,7 +902,7 @@ div.form>:hover{
 
 .u-section-6 .u-image-2 {
   min-height: 222px;
-  background-image: url("../images/rg.jpg");
+  background-image: url("../../images/rg.jpg");
   background-position: 50% 50%;
 }
 
@@ -912,7 +912,7 @@ div.form>:hover{
 
 .u-section-6 .u-image-3 {
   min-height: 230px;
-  background-image: url("../images/billionphotos1882993.jpg");
+  background-image: url("../../images/billionphotos1882993.jpg");
   background-position: 50% 50%;
 }
 
@@ -922,7 +922,7 @@ div.form>:hover{
 
 .u-section-6 .u-image-4 {
   min-height: 230px;
-  background-image: url("../images/billionphotos1882951.jpg");
+  background-image: url("../../images/billionphotos1882951.jpg");
   background-position: 50% 50%;
 }
 
