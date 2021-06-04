@@ -2,6 +2,7 @@ package pl.coderslab.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -18,9 +19,12 @@ public class Order {
     private LocalDate created;
     @ManyToOne
     private Customer customer;
-    @OneToMany
+    @OneToMany(fetch=FetchType.EAGER, mappedBy = "order")
     private List<OrderItem> items;
 
+    public void addItem(OrderItem item){
+        items.add(item);
+    }
     public Long getId() {
         return id;
     }

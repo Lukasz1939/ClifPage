@@ -2,31 +2,34 @@ package pl.coderslab.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.coderslab.entity.Material;
 import pl.coderslab.entity.Order;
 import pl.coderslab.entity.OrderItem;
 import pl.coderslab.repository.CustomerRepository;
 import pl.coderslab.repository.MaterialRepository;
+import pl.coderslab.repository.OrderItemRepository;
 import pl.coderslab.repository.OrderRepository;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/order")
 public class OrderController {
     private OrderRepository orderRepository;
+    private MaterialRepository materialRepository;
+    private CustomerRepository customerRepository;
+    private OrderItemRepository orderItemRepository;
 
-    public OrderController(OrderRepository orderRepository, MaterialRepository materialRepository, CustomerRepository customerRepository) {
+    public OrderController(OrderRepository orderRepository, MaterialRepository materialRepository, CustomerRepository customerRepository,OrderItemRepository orderItemRepository) {
         this.orderRepository = orderRepository;
         this.materialRepository = materialRepository;
         this.customerRepository = customerRepository;
+        this.orderItemRepository = orderItemRepository;
     }
 
-    private MaterialRepository materialRepository;
-    private CustomerRepository customerRepository;
 
 
 
@@ -36,15 +39,28 @@ public class OrderController {
         return "order/list";
     }
 
-    @GetMapping("/editOrder/{id}")
-    public String addItem(Model model){
+    @GetMapping("/delete")
+    public String deleteOrder(Model model){
         model.addAttribute("orderItem", new OrderItem());
         return "order/itemForm";
     }
-//    @PostMapping("/newOrderItem")
-//    public String addItemPost(@ModelAttribute OrderItem item, Model model){
-//
-//    }
+    @Transactional
+    @GetMapping("/editOrder/{id}")
+    public String addItem( Model model){
+        model.addAttribute("orderItem", new OrderItem());
+        return "order/itemForm";
+    }
+//    Optional<Order> order = orderRepository.findById(id);
+//    @PathVariable long id
+    @Transactional
+    @PostMapping("/editOrder/{id}")
+    public String addItemPost(@PathVariable Long id, @ModelAttribute OrderItem item){
+        Optional<Order> order = orderRepository.findById(id);
+        Order toAdd = order.get();
+        toAdd.addItem(item);
+        orderItemRepository.save(item);
+        return "order/list";
+    }
 
     @ModelAttribute("orders")
     public List<Order> orders(){
