@@ -16,11 +16,15 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private LocalDate created;
+    private String created;
     @ManyToOne
     private Customer customer;
     @OneToMany(fetch=FetchType.EAGER, mappedBy = "order")
     private List<OrderItem> items;
+
+    public Order(){
+        this.created = LocalDate.now().toString();
+    }
 
     public void addItem(OrderItem item){
         items.add(item);
@@ -41,11 +45,11 @@ public class Order {
         this.name = name;
     }
 
-    public LocalDate getCreated() {
+    public String getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDate created) {
+    public void setCreated(String created) {
         this.created = created;
     }
 

@@ -13,24 +13,23 @@
     <title>Dodaj do zamówienia</title>
 </head>
 <body>
-<form:form modelAttribute="orderItem">
+<form:form modelAttribute="orderItem" action="/ClifPage/order/editOrder" method="post">
     <label for="width">Podaj szerokość:
-        <form:input name="width" path="width"/>
+        <form:input name="width" path="width" id="width"/>
     </label>
     <label for="length">Podaj długość:
-        <form:input name="length" path="length"/>
+        <form:input name="length" path="length" id="length"/>
     </label>
     <label for="quantity">Podaj ilość:
-    <form:input name="quantity" path="quantity"/>
+    <form:input name="quantity" path="quantity" />
     </label>
-        <form:radiobutton label="Grubość 2 cm" path="thickness" value="2"/>
-        <form:radiobutton label="Grubość 3 cm" path="thickness" value="3"/>
     <label for="material">Podaj materiał:
 <%--        <c:forEach items="${materials}" var="material">--%>
 <%--            <li>${material.getName()}</li>--%>
 <%--        </c:forEach>--%>
         <form:select path="material" items="${materials}" itemValue="id" itemLabel="name"/>
     </label>
+    <form:hidden path="order.id" />
     <form:hidden path="id"/>
     <input type="submit"/>
 </form:form>

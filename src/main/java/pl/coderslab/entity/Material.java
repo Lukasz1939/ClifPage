@@ -15,6 +15,5 @@ public class Material {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private int price2cm;
-    private int price3cm;
+    private int price;
 }

@@ -1,5 +1,6 @@
 package pl.coderslab;
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -13,12 +14,15 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import pl.coderslab.converter.MaterialConverter;
+import pl.coderslab.converter.OrderConverter;
+import pl.coderslab.converter.OrderItemConverter;
 
 import javax.persistence.EntityManagerFactory;
 
 @Configuration
 @EnableWebMvc
-@EnableJpaRepositories(basePackages = "pl.coderslab.repository")@ComponentScan(basePackages = "pl.coderslab")
+@EnableJpaRepositories(basePackages = "pl.coderslab.repository")
+@ComponentScan(basePackages = "pl.coderslab")
 public class AppConfig implements WebMvcConfigurer {
     @Bean
     public ViewResolver viewResolver() {
@@ -36,11 +40,20 @@ public class AppConfig implements WebMvcConfigurer {
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(getMaterialConverter());
+        registry.addConverter(getOrderConverter());
+        registry.addConverter(getOrderItemConverter());
     }
 
     @Bean
     public MaterialConverter getMaterialConverter() {
         return new MaterialConverter();
+    }
+    @Bean
+    public OrderConverter getOrderConverter() {
+        return new OrderConverter();
+    }
+    @Bean
+    public OrderItemConverter getOrderItemConverter() { return new OrderItemConverter();
     }
 
     @Bean

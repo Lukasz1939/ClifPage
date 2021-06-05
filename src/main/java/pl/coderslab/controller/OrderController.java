@@ -1,5 +1,7 @@
 package pl.coderslab.controller;
 
+import org.hibernate.Hibernate;
+import org.hibernate.proxy.HibernateProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,8 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+
+@Transactional
 @Controller
 @RequestMapping("/order")
 public class OrderController {
@@ -46,20 +50,33 @@ public class OrderController {
     }
     @Transactional
     @GetMapping("/editOrder/{id}")
-    public String addItem( Model model){
-        model.addAttribute("orderItem", new OrderItem());
+    public String addItem(@PathVariable Long id, Model model){
+        Order order = orderRepository.getOne(id);
+        OrderItem orderItem = new OrderItem();
+        orderItem.setOrder(order);
+        model.addAttribute("orderItem", orderItem);
         return "order/itemForm";
     }
-//    Optional<Order> order = orderRepository.findById(id);
-//    @PathVariable long id
+
     @Transactional
-    @PostMapping("/editOrder/{id}")
-    public String addItemPost(@PathVariable Long id, @ModelAttribute OrderItem item){
-        Optional<Order> order = orderRepository.findById(id);
-        Order toAdd = order.get();
-        toAdd.addItem(item);
+    @GetMapping("/addOrder")
+    public String addOrder(Model model){
+        model.addAttribute("order", new Order());
+        return "order/itemForm";
+    }
+
+    @Transactional
+    @PostMapping("/editOrder")
+    @ResponseBody
+    public String addItemPost(@ModelAttribute OrderItem item ){
+        item.setSize(item.getWidth() * item.getLength());
+        Long materialId = item.getMaterialId();
+        Optional<Material> optional = materialRepository.findById(materialId);
+        Material material = optional.get();
+        int price = material.getPrice();
+        item.setPrice(price*item.getSize());
         orderItemRepository.save(item);
-        return "order/list";
+        return material.toString();
     }
 
     @ModelAttribute("orders")
@@ -70,4 +87,5 @@ public class OrderController {
     public List<Material> materials(){
     return materialRepository.findAll();
     }
+
 }

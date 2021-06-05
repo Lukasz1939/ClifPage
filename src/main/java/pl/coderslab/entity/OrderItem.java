@@ -15,34 +15,29 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Material material;
-    private int length;
-    private int width;
-    private int thickness;
+    private float length;
+    private float width;
     private float size;
     private float price;
     private int quantity;
     @ManyToOne
+    @JoinColumn
     private Order order;
 
 
+    public OrderItem(){};
 
-    public OrderItem() {
-    }
-
-    public OrderItem(Material material, int length, int width, int thickness, int quantity) {
+    public OrderItem(Material material, int length, int width, int thickness, int quantity, Order order) {
         this.material = material;
         this.length = length;
         this.width = width;
-        this.size = width * length;
-        this.thickness = thickness;
-        if(thickness == 2 ){
-            this.price = size * material.getPrice2cm();
-        }else if(thickness == 3 ){
-            this.price = size * material.getPrice3cm();
-        }
         this.quantity = quantity;
+        this.order = order;
     }
 
+    public Long getMaterialId() {
+        return this.material.getId();
+    }
 }
