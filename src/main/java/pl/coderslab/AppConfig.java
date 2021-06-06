@@ -13,6 +13,7 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import pl.coderslab.converter.CustomerConverter;
 import pl.coderslab.converter.MaterialConverter;
 import pl.coderslab.converter.OrderConverter;
 import pl.coderslab.converter.OrderItemConverter;
@@ -42,6 +43,7 @@ public class AppConfig implements WebMvcConfigurer {
         registry.addConverter(getMaterialConverter());
         registry.addConverter(getOrderConverter());
         registry.addConverter(getOrderItemConverter());
+        registry.addConverter(getCustomerConverter());
     }
 
     @Bean
@@ -53,8 +55,9 @@ public class AppConfig implements WebMvcConfigurer {
         return new OrderConverter();
     }
     @Bean
-    public OrderItemConverter getOrderItemConverter() { return new OrderItemConverter();
-    }
+    public OrderItemConverter getOrderItemConverter() { return new OrderItemConverter();}
+    @Bean
+    public CustomerConverter getCustomerConverter() { return new CustomerConverter();}
 
     @Bean
     public LocalEntityManagerFactoryBean entityManagerFactory() {

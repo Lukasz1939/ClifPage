@@ -1,27 +1,21 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: bubu
-  Date: 30.05.2021
-  Time: 12:13
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add item</title>
+    <title></title>
 </head>
 <body>
-<form:form modelAttribute="orderItem">
-    <label for="width">Podaj szerokość:
-    <form:input name="width" path="width"/>
+
+<form:form modelAttribute="order" method="post">
+    <label for="name">Podaj nazwę zamówienia:
+        <form:input name="name" path="name"/>
     </label>
-    <label for="length">Podaj długość:
-        <form:input name="length" path="length"/>
+    <label for="customer">Podaj klienta:
+        <form:select name="customer" path="customer" items="${customers}" itemValue="id" itemLabel="companyName"/>
     </label>
-    <label for="material">Podaj długość:
-        <form:select items="${}" name="material" path="material"/>
-    </label>
+    <form:hidden path="id"/>
+    <input type="submit"/>
 </form:form>
 </body>
 </html>

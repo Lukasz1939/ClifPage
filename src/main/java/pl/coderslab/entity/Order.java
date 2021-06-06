@@ -19,7 +19,7 @@ public class Order {
     private String created;
     @ManyToOne
     private Customer customer;
-    @OneToMany(fetch=FetchType.EAGER, mappedBy = "order")
+    @OneToMany(fetch=FetchType.EAGER, mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> items;
 
     public Order(){

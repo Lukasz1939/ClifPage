@@ -64,13 +64,10 @@
                             <a class="u-button-style u-nav-link" href="#carousel_6381" style="padding: 10px 20px;">Cennik</a>
                         </li>
                         <li class="u-nav-item">
-                            <a class="u-button-style u-nav-link" href="/login" style="padding: 10px 20px;">Zaloguj</a>
+                            <a class="u-button-style u-nav-link" href="/login/login" style="padding: 10px 20px;">Zaloguj</a>
                         </li>
                         <li class="u-nav-item">
-                            <a class="u-button-style u-nav-link hidden-customer" href="orderPage.html" style="padding: 10px 20px;">Zamów</a>
-                        </li>
-                        <li class="u-nav-item">
-                            <a class="u-button-style u-nav-link hidden-admin" href="Page-1.html" style="padding: 10px 20px;">Zamówienia</a>
+                            <a class="u-button-style u-nav-link hidden-admin" href="http://localhost:8080/ClifPage/order/orderList" style="padding: 10px 20px;">Zamówienia</a>
                         </li>
                         <li class="u-nav-item">
                             <a class="u-button-style u-nav-link" href="#sec-d1d2" style="padding: 10px 20px;">Kontakt</a>

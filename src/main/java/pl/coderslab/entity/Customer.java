@@ -5,7 +5,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-
+@Getter
+@Setter
 @Entity
 @Table(name = "customers")
 public class Customer {
@@ -16,7 +17,9 @@ public class Customer {
     private String login;
     private String password;
     private String city;
+    private String postCode;
     private String street;
     private Long streetNumber;
+    private String NIP;
 
 }

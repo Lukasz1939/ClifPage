@@ -14,11 +14,11 @@
 </head>
 <body>
 <form:form modelAttribute="orderItem" action="/ClifPage/order/editOrder" method="post">
-    <label for="width">Podaj szerokość:
-        <form:input name="width" path="width" id="width"/>
-    </label>
-    <label for="length">Podaj długość:
+    <label for="length">Podaj długość w metrach:
         <form:input name="length" path="length" id="length"/>
+    </label>
+    <label for="width">Podaj szerokość w metrach:
+        <form:input name="width" path="width" id="width"/>
     </label>
     <label for="quantity">Podaj ilość:
     <form:input name="quantity" path="quantity" />

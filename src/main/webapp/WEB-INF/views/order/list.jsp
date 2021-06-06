@@ -25,11 +25,20 @@
     <tr>
       <td><c:out value="${order.getName()}"/></td>
       <td><a methods="get" href="/ClifPage/order/editOrder/${order.getId()}">Dodaj</a></td>
-      <td><a methods="get" href="/ClifPage/order/delete">Usuń</a></td>
+      <td><a methods="post" href="/ClifPage/order/delete/${order.getId()}">Usuń</a></td>
     </tr>
-  </c:forEach>
+    <c:forEach items="${order.getItems()}" var="item">
+      <tr>
+        <td><c:out value="${item.getMaterial().getName()}"/></td>
+        <td><c:out value="${Math.round(item.getSize() * 100) / 100}"/></td>
+        <td><c:out value="${item.getPriceWithVAT()}"/></td>
+      </tr>
+    </c:forEach>
+    </c:forEach>
   </tbody>
 </table>
 <a href="/ClifPage/order/addOrder">Dodaj nowe zamówienie</a>
+<a href="/ClifPage">Powrót</a>
+
 </body>
 </html>

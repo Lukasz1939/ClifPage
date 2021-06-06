@@ -4,7 +4,9 @@ import org.hibernate.Hibernate;
 import org.hibernate.proxy.HibernateProxy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.entity.Customer;
 import pl.coderslab.entity.Material;
 import pl.coderslab.entity.Order;
 import pl.coderslab.entity.OrderItem;
@@ -14,11 +16,11 @@ import pl.coderslab.repository.OrderItemRepository;
 import pl.coderslab.repository.OrderRepository;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
 
-@Transactional
 @Controller
 @RequestMapping("/order")
 public class OrderController {
@@ -40,15 +42,11 @@ public class OrderController {
 
     @GetMapping("/orderList")
     public String orderList(){
+
         return "order/list";
     }
 
-    @GetMapping("/delete")
-    public String deleteOrder(Model model){
-        model.addAttribute("orderItem", new OrderItem());
-        return "order/itemForm";
-    }
-    @Transactional
+
     @GetMapping("/editOrder/{id}")
     public String addItem(@PathVariable Long id, Model model){
         Order order = orderRepository.getOne(id);
@@ -57,35 +55,69 @@ public class OrderController {
         model.addAttribute("orderItem", orderItem);
         return "order/itemForm";
     }
-
-    @Transactional
-    @GetMapping("/addOrder")
-    public String addOrder(Model model){
-        model.addAttribute("order", new Order());
-        return "order/itemForm";
-    }
-
     @Transactional
     @PostMapping("/editOrder")
-    @ResponseBody
-    public String addItemPost(@ModelAttribute OrderItem item ){
-        item.setSize(item.getWidth() * item.getLength());
+    public String addItemPost(@Valid OrderItem item, BindingResult result){
+        if(result.hasErrors()){
+            return "redirect:../order/error";
+        }
+        item.setSize(item.getWidth() * item.getLength() * item.getQuantity());
         Long materialId = item.getMaterialId();
         Optional<Material> optional = materialRepository.findById(materialId);
         Material material = optional.get();
-        int price = material.getPrice();
-        item.setPrice(price*item.getSize());
+        double price = material.getPrice() * item.getSize();
+        double priceVat = Math.round(price * 100) / 100;
+        item.setPrice(price);
+        item.setPriceWithVAT(priceVat);
         orderItemRepository.save(item);
-        return material.toString();
+        return "redirect:../order/orderList";
+    }
+
+
+    @GetMapping("/addOrder")
+    public String addOrder(Model model){
+        model.addAttribute("order", new Order());
+        return "order/orderForm";
+    }
+    @Transactional
+    @PostMapping("/addOrder")
+    public String addOrderPost(@Valid Order order, BindingResult result){
+        if(result.hasErrors()){
+            return "redirect:../order/error";
+        }
+    orderRepository.save(order);
+    return "redirect:../order/orderList";
+    }
+
+    @Transactional
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id){
+        Order toDel = orderRepository.getOne(id);
+        orderRepository.delete(toDel);
+        return "redirect:../../order/orderList";
+    }
+
+    @GetMapping("/error")
+    public String error(){
+        return "order/invalidData";
     }
 
     @ModelAttribute("orders")
     public List<Order> orders(){
-        return orderRepository.findAll();
+        List<Order> orders = orderRepository.findAll();
+        for(Order o:orders){
+            Hibernate.initialize(o.getItems());
+        }
+        return orders;
     }
     @ModelAttribute("materials")
     public List<Material> materials(){
     return materialRepository.findAll();
     }
+    @ModelAttribute("customers")
+    public List<Customer> customers(){
+        return customerRepository.findAll();
+    }
+
 
 }

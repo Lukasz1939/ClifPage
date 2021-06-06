@@ -17,10 +17,11 @@ public class OrderItem {
     private Long id;
     @ManyToOne(fetch = FetchType.EAGER)
     private Material material;
-    private float length;
-    private float width;
-    private float size;
-    private float price;
+    private double length;
+    private double width;
+    private double size;
+    private double price;
+    private double priceWithVAT;
     private int quantity;
     @ManyToOne
     @JoinColumn
