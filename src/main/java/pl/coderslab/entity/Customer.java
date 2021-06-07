@@ -27,7 +27,10 @@ public class Customer {
     @Column(nullable = true)
     private String NIP;
     private int enabled;
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {
+            CascadeType.MERGE,
+            CascadeType.REFRESH
+    }, fetch = FetchType.EAGER)
     @JoinTable(name = "customer_role"
             , joinColumns = @JoinColumn(name = "customer_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))

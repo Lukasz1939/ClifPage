@@ -1,16 +1,15 @@
 package pl.coderslab.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import pl.coderslab.Services.CustomerService;
 import pl.coderslab.entity.Customer;
 import pl.coderslab.repository.CustomerRepository;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
@@ -19,9 +18,11 @@ import java.util.List;
 @RequestMapping("/login")
 public class LoginController {
     private CustomerRepository customerRepository;
+    private final CustomerService customerService;
 
-    public LoginController(CustomerRepository customerRepository){
+    public LoginController(CustomerRepository customerRepository, CustomerService customerService){
         this.customerRepository = customerRepository;
+        this.customerService = customerService;
     }
 
     @GetMapping("/login")
@@ -29,9 +30,17 @@ public class LoginController {
         return "login/login";
     }
 
+    @PostMapping("/login")
+    public String main(){return "redirect:../"; }
     @PostMapping("/logout")
     public String logout(){
         return "login/logout";
+    }
+
+    @GetMapping("/admin")
+    @ResponseBody
+    public String userInfo(@AuthenticationPrincipal UserDetails customUser) {
+        return "You are logged as " + customUser;
     }
 
     @Transactional
@@ -47,7 +56,7 @@ public class LoginController {
         if(result.hasErrors()){
             return "redirect:../login/error";
         }
-        customerRepository.save(customer);
+        customerService.saveCustomer(customer);
         return "redirect:../login/login";
     }
 

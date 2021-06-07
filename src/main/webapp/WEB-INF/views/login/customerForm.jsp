@@ -20,7 +20,7 @@
         <label for="password">Hasło:
             <form:password name="password" path="password"/>
         </label>
-        <label for="email">Hasło:
+        <label for="email">Email:
             <form:input name="email" path="email"/>
         </label>
         <label for="companyName">Nazwa firmy(Opcjonalnie):

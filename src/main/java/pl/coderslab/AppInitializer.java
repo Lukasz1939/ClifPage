@@ -1,8 +1,10 @@
 package pl.coderslab;
 
 import org.springframework.web.WebApplicationInitializer;
+import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import javax.servlet.FilterRegistration;
@@ -26,5 +28,13 @@ public class AppInitializer implements WebApplicationInitializer {
         fr.setInitParameter("encoding", "UTF-8");
         fr.setInitParameter("forceEncoding", "true");
         fr.addMappingForUrlPatterns(null, true, "/*");
+        AnnotationConfigWebApplicationContext root = new AnnotationConfigWebApplicationContext();
+        root.register(SecurityConfig.class);
+
+        container.addListener(new ContextLoaderListener(root));
+
+        container.addFilter("securityFilter", new DelegatingFilterProxy("springSecurityFilterChain"))
+                .addMappingForUrlPatterns(null, false, "/*");
     }
+
 }
