@@ -9,12 +9,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Stwórz konto</title>
+    <title>Dane firmy</title>
 </head>
 <body>
     <form:form modelAttribute="customer" method="post">
         <form:hidden path="id"/>
-        <label for="companyName">Nazwa firmy:
+        <label for="login">Login:
+            <form:input name="login" path="login"/>
+        </label>
+        <label for="password">Hasło:
+            <form:password name="password" path="password"/>
+        </label>
+        <label for="email">Hasło:
+            <form:input name="email" path="email"/>
+        </label>
+        <label for="companyName">Nazwa firmy(Opcjonalnie):
             <form:input name="companyName" path="companyName"/>
         </label>
         <label for="city">Miasto:
@@ -29,16 +38,10 @@
         <label for="streetNumber">Numer budynku:
             <form:input name="streetNumber" path="streetNumber"/>
         </label>
-        <label for="NIP">NIP:
+        <label for="NIP">NIP(Opcjonalnie):
             <form:input name="NIP" path="NIP"/>
         </label>
-        <label for="login">Login:
-            <form:input name="login" path="login"/>
-        </label>
-        <label for="password">Hasło:
-            <form:password name="password" path="password"/>
-        </label>
-        <input type="submit" value="Załóż konto">
+        <input type="submit" value="Potwierdź dane">
     </form:form>
 </body>
 </html>

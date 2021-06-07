@@ -1,6 +1,7 @@
 package pl.coderslab.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,10 +18,23 @@ public class HomeController {
         this.materialRepository = materialRepository;
     }
 
-    @RequestMapping("/home")
+    @RequestMapping("/")
     public String home(){
+
         return "index";
     }
+
+    @GetMapping("/sec")
+    @ResponseBody
+    public String sec(){
+        return "<h1>I can see it in my account</h1>";
+    }
+
+    @GetMapping("/403")
+    public String noAuth(){
+        return "403";
+    }
+
 
     @ModelAttribute("materials")
     public List<Material> materials(){

@@ -22,7 +22,7 @@
                 </label>
             </div>
             <div class="form-item">
-                <input type="submit"value="Sign In"/>
+                <input type="submit"value="Zaloguj"/>
             </div>
             <input type="hidden"name="${_csrf.parameterName}"value="${_csrf.token}"/>
         </form>

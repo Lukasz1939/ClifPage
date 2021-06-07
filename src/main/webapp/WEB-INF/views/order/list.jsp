@@ -25,7 +25,9 @@
     <tr>
       <td><c:out value="${order.getName()}"/></td>
       <td><a methods="get" href="/ClifPage/order/editOrder/${order.getId()}">Dodaj</a></td>
-      <td><a methods="post" href="/ClifPage/order/delete/${order.getId()}">Usuń</a></td>
+      <sec:authorize access="hasRole('ADMIN')">
+        <td><a methods="post" href="/ClifPage/order/delete/${order.getId()}">Usuń</a></td>
+      </sec:authorize>
     </tr>
     <c:forEach items="${order.getItems()}" var="item">
       <tr>

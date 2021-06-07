@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.entity.Customer;
 import pl.coderslab.repository.CustomerRepository;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
@@ -24,8 +25,13 @@ public class LoginController {
     }
 
     @GetMapping("/login")
-    public String home(){
+    public String login(){
         return "login/login";
+    }
+
+    @PostMapping("/logout")
+    public String logout(){
+        return "login/logout";
     }
 
     @Transactional
