@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
 //                .antMatchers("/**").hasAnyRole("USER","ADMIN")
 //                .antMatchers("/**").hasAnyAuthority("ROLE_ADMIN")
-                .antMatchers("/sec").authenticated()
+                .antMatchers("/order/orderList").authenticated()
                 .and().formLogin()
                 .loginPage("/login/login")
                 .defaultSuccessUrl("/order/orderList")
@@ -53,13 +53,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
-//    @Bean
-//    public BCryptPasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-//
-//    @Bean
-//    public SpringDataUserDetailsService customUserDetailsService() {
-//        return new SpringDataUserDetailsService();
-//    }
 }

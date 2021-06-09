@@ -25,14 +25,13 @@ public class SpringDataUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String login) {
         final Customer user = customerService.findByLogin(login);
         if (user == null) {throw new UsernameNotFoundException(login); }
-//        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-//        user.getRoles().forEach(r ->
-//                grantedAuthorities.add(new SimpleGrantedAuthority(r.getName())));
-//        return new org.springframework.security.core.userdetails.User(
-//                user.getLogin(), user.getPassword(), grantedAuthorities);
-        UserDetails userDetails = User.withUsername(user.getEmail())
-                .password(user.getPassword())
-                .authorities("USER").build();
-        return userDetails;
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+        user.getRoles().forEach(r ->
+                grantedAuthorities.add(new SimpleGrantedAuthority(r.getName())));
+        return new CurrentUser(user.getLogin(), user.getPassword(), grantedAuthorities, user);
+//        UserDetails userDetails = User.withUsername(user.getEmail())
+//                .password(user.getPassword())
+//                .authorities("USER").build();
+//        return userDetails;
     } 
 }

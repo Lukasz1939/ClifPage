@@ -2,10 +2,13 @@ package pl.coderslab.controller;
 
 import org.hibernate.Hibernate;
 import org.hibernate.proxy.HibernateProxy;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.Services.CurrentUser;
 import pl.coderslab.entity.Customer;
 import pl.coderslab.entity.Material;
 import pl.coderslab.entity.Order;
@@ -15,6 +18,7 @@ import pl.coderslab.repository.MaterialRepository;
 import pl.coderslab.repository.OrderItemRepository;
 import pl.coderslab.repository.OrderRepository;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
@@ -39,10 +43,13 @@ public class OrderController {
 
 
 
-
     @GetMapping("/orderList")
-    public String orderList(){
-
+    public String orderList(HttpServletRequest request, @AuthenticationPrincipal CurrentUser customUser){
+        List<Order> orders = orderRepository.getAllByCustomer(customUser.getUser());
+        for(Order o:orders){
+            Hibernate.initialize(o.getItems());
+        }
+        request.setAttribute("orders", orders);
         return "order/list";
     }
 
@@ -81,10 +88,11 @@ public class OrderController {
     }
     @Transactional
     @PostMapping("/addOrder")
-    public String addOrderPost(@Valid Order order, BindingResult result){
+    public String addOrderPost(@Valid Order order, BindingResult result, @AuthenticationPrincipal CurrentUser customUser){
         if(result.hasErrors()){
             return "redirect:../order/error";
         }
+        order.setCustomer(customUser.getUser());
     orderRepository.save(order);
     return "redirect:../order/orderList";
     }
@@ -102,21 +110,18 @@ public class OrderController {
         return "order/invalidData";
     }
 
-    @ModelAttribute("orders")
-    public List<Order> orders(){
-        List<Order> orders = orderRepository.findAll();
-        for(Order o:orders){
-            Hibernate.initialize(o.getItems());
-        }
-        return orders;
-    }
+//    @ModelAttribute("orders")
+//    public List<Order> orders(){
+//        List<Order> orders = orderRepository.findAll();
+//        for(Order o:orders){
+//            Hibernate.initialize(o.getItems());
+//        }
+//        return orders;
+//    }
+
     @ModelAttribute("materials")
     public List<Material> materials(){
-    return materialRepository.findAll();
-    }
-    @ModelAttribute("customers")
-    public List<Customer> customers(){
-        return customerRepository.findAll();
+        return materialRepository.findAll();
     }
 
 

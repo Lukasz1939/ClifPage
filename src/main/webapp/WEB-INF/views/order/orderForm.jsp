@@ -11,9 +11,6 @@
     <label for="name">Podaj nazwę zamówienia:
         <form:input name="name" path="name"/>
     </label>
-    <label for="customer">Podaj klienta:
-        <form:select name="customer" path="customer" items="${customers}" itemValue="id" itemLabel="companyName"/>
-    </label>
     <form:hidden path="id"/>
     <input type="submit"/>
 </form:form>

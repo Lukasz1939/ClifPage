@@ -26,7 +26,7 @@
             </div>
             <input type="hidden"name="${_csrf.parameterName}"value="${_csrf.token}"/>
         </form>
-        <a href="index.html" class="homepage-btn">Powrót do strony głównej</a>
+        <a href="/ClifPage/" class="homepage-btn">Powrót do strony głównej</a>
     </div>
 </section>
 <a href="/ClifPage/login/newAccount">Załóż konto</a>

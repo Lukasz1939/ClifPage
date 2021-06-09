@@ -23,6 +23,9 @@
         <label for="email">Email:
             <form:input name="email" path="email"/>
         </label>
+        <label for="phoneNumber">Numer Telefonu:
+            <form:input name="phoneNumber" path="phoneNumber"/>
+        </label>
         <label for="companyName">Nazwa firmy(Opcjonalnie):
             <form:input name="companyName" path="companyName"/>
         </label>
