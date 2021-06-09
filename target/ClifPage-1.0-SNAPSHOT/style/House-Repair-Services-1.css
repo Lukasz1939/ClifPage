@@ -86,6 +86,11 @@
 .price-table{
     color: lightgray;
     border: 2px solid lightgray;
+    width: 70%;
+    margin: 0 auto;
+}
+.price-table td{
+    border: 2px solid lightgray;
 }
 
 .u-section-1 .u-text-4 {
