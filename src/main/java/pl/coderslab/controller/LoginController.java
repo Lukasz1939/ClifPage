@@ -40,7 +40,7 @@ public class LoginController {
 
     @PostMapping("/logout")
     public String logoutPost(){
-        return "";
+        return "redirect:../";
     }
 
     @Transactional

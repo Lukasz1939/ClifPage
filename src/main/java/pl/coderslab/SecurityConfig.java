@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import pl.coderslab.Services.SpringDataUserDetailsService;
 
 
@@ -33,7 +34,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login/login")
                 .defaultSuccessUrl("/order/orderList")
                 .failureUrl("/403")
-                .and().logout().logoutSuccessUrl("/")
+                .and().logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/x")
                 .permitAll()
                 .and().exceptionHandling().accessDeniedPage("/403");
 

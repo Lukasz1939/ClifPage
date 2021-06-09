@@ -1,3 +1,4 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html style="font-size: 16px;">
@@ -52,7 +53,6 @@
         <div>
             <div>
                 <div>
-                    <div class="u-menu-close"></div>
                     <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
                         <li class="u-nav-item">
                             <a class="u-button-style u-nav-link" href="#carousel_4ff3" style="padding: 10px 20px;">O nas</a>
@@ -72,6 +72,11 @@
                         <li class="u-nav-item">
                             <a class="u-button-style u-nav-link" href="#sec-d1d2" style="padding: 10px 20px;">Kontakt</a>
                         </li>
+                        <sec:authorize access="isAuthenticated()">
+                            <li class="u-nav-item">
+                                <a href="<c:url value="/logout" />">Logout</a>
+                            </li>
+                        </sec:authorize>
                     </ul>
                 </div>
             </div>

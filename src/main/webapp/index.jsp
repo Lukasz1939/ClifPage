@@ -74,7 +74,7 @@
                         </li>
                         <sec:authorize access="isAuthenticated()">
                             <li class="u-nav-item">
-                                <a class="u-button-style u-nav-link" href="login/logout" method="post" style="padding: 10px 20px;">Wyloguj</a>
+                                <a href="<c:url value="/logout" />">Logout</a>
                             </li>
                         </sec:authorize>
                     </ul>

@@ -22,7 +22,8 @@ public class HomeController {
         this.materialRepository = materialRepository;
     }
 
-    @RequestMapping("/")
+    @RequestMapping("")
+    @ResponseBody
     public String home(){
 
         return "index";
