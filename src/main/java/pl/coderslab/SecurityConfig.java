@@ -32,11 +32,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/order/orderList").authenticated()
                 .and().formLogin()
                 .loginPage("/login/login")
-                .defaultSuccessUrl("/order/orderList")
+                .defaultSuccessUrl("/")
                 .failureUrl("/403")
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/x")
+                .logoutSuccessUrl("/")
                 .permitAll()
                 .and().exceptionHandling().accessDeniedPage("/403");
 

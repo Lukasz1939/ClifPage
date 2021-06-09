@@ -52,6 +52,15 @@ public class OrderController {
         request.setAttribute("orders", orders);
         return "order/list";
     }
+    @GetMapping("/adminList")
+    public String adminList(HttpServletRequest request, @AuthenticationPrincipal CurrentUser customUser){
+        List<Order> orders = orderRepository.findAll();
+        for(Order o:orders){
+            Hibernate.initialize(o.getItems());
+        }
+        request.setAttribute("orders", orders);
+        return "order/list";
+    }
 
 
     @GetMapping("/editOrder/{id}")

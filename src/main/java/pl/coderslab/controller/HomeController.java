@@ -23,9 +23,7 @@ public class HomeController {
     }
 
     @RequestMapping("")
-    @ResponseBody
     public String home(){
-
         return "index";
     }
 
@@ -47,6 +45,7 @@ public class HomeController {
     public List<Material> materials(){
         return materialRepository.findAll();
     }
+
     @GetMapping("/admin")
     @ResponseBody
     public String userInfo(@AuthenticationPrincipal UserDetails customUser) {
