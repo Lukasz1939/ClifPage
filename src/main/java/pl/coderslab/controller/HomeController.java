@@ -1,10 +1,14 @@
 package pl.coderslab.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pl.coderslab.Services.CurrentUser;
+import pl.coderslab.entity.Customer;
 import pl.coderslab.entity.Material;
 import pl.coderslab.repository.MaterialRepository;
 
@@ -18,16 +22,17 @@ public class HomeController {
         this.materialRepository = materialRepository;
     }
 
-    @RequestMapping("/")
+    @RequestMapping("")
     public String home(){
-
         return "index";
     }
 
+
     @GetMapping("/sec")
     @ResponseBody
-    public String sec(){
-        return "<h1>I can see it in my account</h1>";
+    public String userInfo(@AuthenticationPrincipal CurrentUser customUser) {
+        Customer user = customUser.getUser();
+        return "You are logged as " + user.getLogin();
     }
 
     @GetMapping("/403")
@@ -39,6 +44,12 @@ public class HomeController {
     @ModelAttribute("materials")
     public List<Material> materials(){
         return materialRepository.findAll();
+    }
+
+    @GetMapping("/admin")
+    @ResponseBody
+    public String userInfo(@AuthenticationPrincipal UserDetails customUser) {
+        return "You are logged as " + customUser;
     }
 
 }

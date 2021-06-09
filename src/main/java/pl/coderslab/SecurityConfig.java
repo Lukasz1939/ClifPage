@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import pl.coderslab.Services.SpringDataUserDetailsService;
 
 
@@ -28,12 +29,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
 //                .antMatchers("/**").hasAnyRole("USER","ADMIN")
 //                .antMatchers("/**").hasAnyAuthority("ROLE_ADMIN")
-                .antMatchers("/sec").authenticated()
+                .antMatchers("/order/orderList").authenticated()
                 .and().formLogin()
                 .loginPage("/login/login")
-                .defaultSuccessUrl("/order/orderList")
+                .defaultSuccessUrl("/")
                 .failureUrl("/403")
-                .and().logout().logoutSuccessUrl("/")
+                .and().logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/")
                 .permitAll()
                 .and().exceptionHandling().accessDeniedPage("/403");
 
@@ -53,13 +56,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
-//    @Bean
-//    public BCryptPasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-//
-//    @Bean
-//    public SpringDataUserDetailsService customUserDetailsService() {
-//        return new SpringDataUserDetailsService();
-//    }
 }

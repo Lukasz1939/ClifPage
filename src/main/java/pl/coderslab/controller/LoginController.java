@@ -32,15 +32,15 @@ public class LoginController {
 
     @PostMapping("/login")
     public String main(){return "redirect:../"; }
-    @PostMapping("/logout")
+
+    @GetMapping("/logout")
     public String logout(){
         return "login/logout";
     }
 
-    @GetMapping("/admin")
-    @ResponseBody
-    public String userInfo(@AuthenticationPrincipal UserDetails customUser) {
-        return "You are logged as " + customUser;
+    @PostMapping("/logout")
+    public String logoutPost(){
+        return "redirect:../";
     }
 
     @Transactional
