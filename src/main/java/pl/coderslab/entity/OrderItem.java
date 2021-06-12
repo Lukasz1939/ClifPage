@@ -2,15 +2,18 @@ package pl.coderslab.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Proxy;
 import org.springframework.stereotype.Component;
 import pl.coderslab.entity.Material;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 
 
 @Entity
 @Getter
 @Setter
+@Proxy(lazy=false)
 public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

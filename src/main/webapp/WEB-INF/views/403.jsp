@@ -1,10 +1,22 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page session="false" %>
+<html >
 <head>
-    <title>Security with Spring Boot</title>
+    <title>Zaloguj</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value='style/myStyle.css'/>" >
+    <link rel="stylesheet" type="text/css" href="<c:url value='style/nicepage.css'/>" >
+    <link rel="stylesheet" type="text/css" href="<c:url value='style/House-Repair-Services-1.css'/>" >
+
 </head>
 <body>
+
+<header class="topHead">
+    <a href="/ClifPage" class="u-image u-logo u-image-1">
+        <img src="../images/default-logo.png" class="u-logo-image u-logo-image-1">
+    </a>
+</header>
 <h1>Dostęp zabroniony</h1>
 <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-fdb7"><div class="u-clearfix u-sheet u-sheet-1">
     <p class="u-small-text u-text u-text-variant u-text-1">Sample text. Click to select the text box. Click again or double click to start editing the text.</p>

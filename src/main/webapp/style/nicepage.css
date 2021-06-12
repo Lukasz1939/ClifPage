@@ -5568,10 +5568,6 @@ footer > *,
 base {
     display: none;
 }
-a {
-    color: #259bca;
-    text-decoration: none;
-}
 a:hover {
     color: #0676a4;
 }
@@ -33573,13 +33569,7 @@ blockquote
 {
     border-color: #104e92;
 }
-.u-overlap.u-overlap-transparent:not(.u-overlap-contrast) .u-header :not(.u-nav-item) > a,
-.u-gradient > .u-container-layout > a,
-.u-image:not(.u-shading) > .u-container-layout > a,
-a
-{
-    color: #104e92;
-}
+
 .u-overlap.u-overlap-transparent:not(.u-overlap-contrast) .u-header :not(.u-nav-item) > a:hover,
 .u-gradient > .u-container-layout > a:hover,
 .u-image:not(.u-shading) > .u-container-layout > a:hover,

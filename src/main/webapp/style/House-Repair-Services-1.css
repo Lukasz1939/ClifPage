@@ -1,5 +1,4 @@
 .u-section-1 {
-    background-image: url("images/dmin.jpg");
     background-position: 50% 0%;
 }
 
@@ -130,7 +129,6 @@
     align-items: center;
     justify-content: center;
     height: 50vh;
-    border-top: 4px solid #333333;
 }
 .form-item{
     display: flex;

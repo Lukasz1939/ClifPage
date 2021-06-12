@@ -28,12 +28,12 @@ public class HomeController {
     }
 
 
-    @GetMapping("/sec")
-    @ResponseBody
-    public String userInfo(@AuthenticationPrincipal CurrentUser customUser) {
-        Customer user = customUser.getUser();
-        return "You are logged as " + user.getLogin();
-    }
+//    @GetMapping("/sec")
+//    @ResponseBody
+//    public String userInfo(@AuthenticationPrincipal CurrentUser customUser) {
+//        Customer user = customUser.getUser();
+//        return "You are logged as " + user.getLogin();
+//    }
 
     @GetMapping("/403")
     public String noAuth(){
@@ -46,10 +46,10 @@ public class HomeController {
         return materialRepository.findAll();
     }
 
-    @GetMapping("/admin")
-    @ResponseBody
-    public String userInfo(@AuthenticationPrincipal UserDetails customUser) {
-        return "You are logged as " + customUser;
-    }
+//    @GetMapping("/admin")
+//    @ResponseBody
+//    public String userInfo(@AuthenticationPrincipal UserDetails customUser) {
+//        return "You are logged as " + customUser;
+//    }
 
 }

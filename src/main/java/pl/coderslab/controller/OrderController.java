@@ -62,7 +62,6 @@ public class OrderController {
         return "order/list";
     }
 
-
     @GetMapping("/editOrder/{id}")
     public String addItem(@PathVariable Long id, Model model){
         Order order = orderRepository.getOne(id);
@@ -102,6 +101,7 @@ public class OrderController {
             return "redirect:../order/error";
         }
         order.setCustomer(customUser.getUser());
+        order.setAccepted(false);
     orderRepository.save(order);
     return "redirect:../order/orderList";
     }
@@ -111,22 +111,55 @@ public class OrderController {
     public String delete(@PathVariable Long id){
         Order toDel = orderRepository.getOne(id);
         orderRepository.delete(toDel);
-        return "redirect:../../order/orderList";
+        return "redirect:../../order/adminList";
+    }
+
+
+    @Transactional
+    @GetMapping("/userDelete/{id}")
+    public String userDelete(@PathVariable Long id){
+        Order toDel = orderRepository.getOne(id);
+        if(toDel.getAccepted()==true) {
+            return "order/cantDel";
+        }else{
+            orderRepository.delete(toDel);
+            return "redirect:../../order/orderList";
+        }
+    }
+
+
+//    @Transactional
+//    @GetMapping("/delete/item/{id}")
+//    public String delItem(@PathVariable Long id){
+//        OrderItem toDel = orderItemRepository.getOne(id);
+//        Order order = orderRepository.getByItems(toDel);
+//        Boolean accepted = order.getAccepted();
+//        if(accepted.equals(true)){
+//            return "redirect:../../cantDel";
+//        }
+//        order.getItems().remove(toDel);
+//        orderRepository.save(order);
+//        orderItemRepository.delete(toDel);
+//        return "redirect:../../orderList";
+//    }
+
+    @Transactional
+    @GetMapping("/accept/{id}")
+    public String acceptPost(@PathVariable Long id){
+        Order toUpdate = orderRepository.getOne(id);
+        toUpdate.setAccepted(true);
+        orderRepository.save(toUpdate);
+        return "redirect:../../order/adminList";
     }
 
     @GetMapping("/error")
     public String error(){
         return "order/invalidData";
     }
-
-//    @ModelAttribute("orders")
-//    public List<Order> orders(){
-//        List<Order> orders = orderRepository.findAll();
-//        for(Order o:orders){
-//            Hibernate.initialize(o.getItems());
-//        }
-//        return orders;
-//    }
+    @GetMapping("/cantDel")
+    public String cannot(){
+        return "order/cantDel";
+    }
 
     @ModelAttribute("materials")
     public List<Material> materials(){

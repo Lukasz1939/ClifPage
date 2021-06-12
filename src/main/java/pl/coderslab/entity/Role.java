@@ -2,6 +2,7 @@ package pl.coderslab.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
+@Proxy(lazy=false)
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

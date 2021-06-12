@@ -1,18 +1,24 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: bubu
-  Date: 30.05.2021
-  Time: 12:13
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<%@ page session="false" %>
+<html >
 <head>
-    <title>Dodaj do zamówienia</title>
+    <title>Dodaj produkt</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value='../../style/myStyle.css'/>" >
+    <link rel="stylesheet" type="text/css" href="<c:url value='../../style/nicepage.css'/>" >
+    <link rel="stylesheet" type="text/css" href="<c:url value='../../style/House-Repair-Services-1.css'/>" >
+
 </head>
 <body>
+
+<header class="topHead">
+    <a href="/ClifPage/" class="u-image u-logo u-image-1">
+        <img src="../../images/default-logo.png" class="u-logo-image u-logo-image-1">
+    </a>
+</header>
 <form:form modelAttribute="orderItem" action="/ClifPage/order/editOrder" method="post">
     <label for="length">Podaj długość w metrach:
         <form:input name="length" path="length" id="length"/>
