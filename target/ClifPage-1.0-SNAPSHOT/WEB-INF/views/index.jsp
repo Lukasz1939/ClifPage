@@ -58,6 +58,9 @@
                         <li class="u-nav-item">
                             <a class="u-button-style u-nav-link" href="#carousel_6381" style="padding: 10px 20px;">Cennik</a>
                         </li>
+                        <li class="u-nav-item">
+                            <a class="u-button-style u-nav-link" href="#sec-d1d2" style="padding: 10px 20px;">Kontakt</a>
+                        </li>
                         <sec:authorize access="isAnonymous()">
                         <li class="u-nav-item">
                             <a class="u-button-style u-nav-link" href="http://localhost:8080/ClifPage/login/login" style="padding: 10px 20px;">Zaloguj</a>
@@ -78,9 +81,7 @@
                                 <a class="u-button-style u-nav-link hidden-admin" href="http://localhost:8080/ClifPage/order/adminList" style="padding: 10px 20px;">Zamówienia</a>
                             </li>
                         </sec:authorize>
-                        <li class="u-nav-item">
-                            <a class="u-button-style u-nav-link" href="#sec-d1d2" style="padding: 10px 20px;">Kontakt</a>
-                        </li>
+
                         <sec:authorize access="isAuthenticated()">
                             <li class="u-nav-item">
                                 <a href="<c:url value="/logout" />">Wyloguj</a>

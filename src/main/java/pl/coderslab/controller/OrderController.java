@@ -1,15 +1,12 @@
 package pl.coderslab.controller;
 
 import org.hibernate.Hibernate;
-import org.hibernate.proxy.HibernateProxy;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.Services.CurrentUser;
-import pl.coderslab.entity.Customer;
 import pl.coderslab.entity.Material;
 import pl.coderslab.entity.Order;
 import pl.coderslab.entity.OrderItem;

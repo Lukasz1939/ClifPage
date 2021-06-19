@@ -33,13 +33,6 @@ public class OrderItem {
 
     public OrderItem(){};
 
-    public OrderItem(Material material, int length, int width, int thickness, int quantity, Order order) {
-        this.material = material;
-        this.length = length;
-        this.width = width;
-        this.quantity = quantity;
-        this.order = order;
-    }
 
     public Long getMaterialId() {
         return this.material.getId();

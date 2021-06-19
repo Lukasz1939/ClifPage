@@ -22,6 +22,7 @@ public class Customer {
     private String email;
     @Column(nullable = false, unique = true, length = 60)
     private String login;
+    @Column(nullable = false, length = 60)
     private String password;
     @Pattern(regexp="([0-9]{9})")
     private String phoneNumber;
@@ -32,6 +33,7 @@ public class Customer {
     private String postCode;
     private String street;
     private String streetNumber;
+    @Pattern(regexp="([0-9]{10})")
     private String NIP;
     private int enabled;
     @ManyToMany(cascade = {

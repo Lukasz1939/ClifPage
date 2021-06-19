@@ -5,11 +5,11 @@
 <%@ page session="false" %>
 <html >
 <head>
+  <meta charset="utf-8">
   <title>Lista zamówień</title>
   <link rel="stylesheet" type="text/css" href="<c:url value='../style/myStyle.css'/>" >
   <link rel="stylesheet" type="text/css" href="<c:url value='../style/nicepage.css'/>" >
   <link rel="stylesheet" type="text/css" href="<c:url value='../style/House-Repair-Services-1.css'/>" >
-
 </head>
 <body>
 
@@ -31,13 +31,16 @@
   <c:forEach items="${orders}" var="order">
     <tr>
       <td><c:out value="${order.getName()}"/></td>
-      <td><a methods="get" href="/ClifPage/order/editOrder/${order.getId()}">Dodaj produkty</a></td>
+      <sec:authorize access="hasRole('USER')">
+        ${order.accepted==true?"<td>W realizacji</td>":'<td><a methods="get" href="/ClifPage/order/editOrder/${order.getId()}">Dodaj produkty</a></td>'}
+<%--      <td ${order.accepted==true? 'class="hide-item"':null}><a methods="get" href="/ClifPage/order/editOrder/${order.getId()}">Dodaj produkty</a></td>--%>
+      </sec:authorize>
       <sec:authorize access="hasRole('USER')">
         <td><a methods="post" ${order.accepted==true? 'class="hide-item"':null} href="/ClifPage/order/userDelete/${order.getId()}">Usuń zamówienie</a></td>
       </sec:authorize>
       <sec:authorize access="hasRole('ADMIN')">
         <td><a methods="post" href="/ClifPage/order/delete/${order.getId()}">Usuń zamówienie</a></td>
-        <td><a methods="post" ${order.accepted==true? 'class="hide-item"':null} href="/ClifPage/order/accept/${order.getId()}">Przyjmij do realizacji</a></td>
+        <td  ${order.accepted==true? 'class="hide-item"':null}><a methods="post" href="/ClifPage/order/accept/${order.getId()}">Przyjmij do realizacji</a></td>
       </sec:authorize>
       <sec:authorize access="hasRole('ADMIN')">
         <td><c:out value="${order.customer.companyName.length()>0?order.customer.companyName:order.customer.login}"/></td>
